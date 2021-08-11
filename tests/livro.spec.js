@@ -66,21 +66,6 @@ describe("Teste de Livros na API REST", () => {
         });
     });
 
-    /*
-    it( "Não deve editar um livro existente (Falta nome do Livro) ", ( done ) => {
-        chai.request( base_url )
-        .post( '/livro/' )
-        .send( {"qtdPaginas": "000" } )
-        .end( (err, res) => {
-            expect(res).to.have.status( 500 );
-            expect( res.body ).to.be.an( 'object' );
-            expect( res.body ).to.have.property( 'error' );
-            done();
-        });
-    });
-    */
-    
-
     it( "Deve retornar um livro existente e especifico", ( done ) => {
         chai.request( base_url )
         .get( '/livro/'+livroTest._id )

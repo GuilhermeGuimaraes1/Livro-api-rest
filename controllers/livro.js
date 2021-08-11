@@ -18,7 +18,12 @@ module.exports = {
 
         try {
             let livro = await Livro.findById( idLivros );
-            return res.status( 200 ).json( livro )
+            if(livro != null) {
+                return res.status( 200 ).json( livro )
+            }else {
+                return res.status( 500 ).json( {msg: "Erro ao buscar livro", error: "Livro não existe"} );
+            }
+            
         }catch( error ) {
             return res.status( 500 ).json( { msg: "Erro ao buscar Livro! ", error: error.message });
         }

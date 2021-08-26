@@ -18,9 +18,12 @@ app.use(express.static( path.join( __dirname, 'public' ) ) );
 const dbConnection = require('./config/database')();
 
 var livroRouter = require( './routes/livro' );
+var loginRouter = require('./routes/login');
 
 app.use( '/livro', livroRouter );
 app.use( 'livro', livroRouter );
+
+app.use( '/login', loginRouter );
 
 app.use( function ( req, res, next ) {
     let err = new Error( "not Found" )
@@ -30,7 +33,7 @@ app.use( function ( req, res, next ) {
 
 app.use(function ( err, req, res, next ) {
     return res.status( err.status || 500 )
-    .json( { error: err.message || "INTERNAL ERROR" } ); 
+    .json( { error: err.message || "INTERNAL ERROR" } );    
 });
 
 module.exports = app;
